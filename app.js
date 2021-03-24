@@ -13,6 +13,7 @@ const app = express()
 
 //atlas link
 const link = process.env.secured || 'mongodb://127.0.0.1:27017' 
+const port = process.env.PORT || 4000
 
 //use objectID from mongodb
 const objectId = mongodb.ObjectID
