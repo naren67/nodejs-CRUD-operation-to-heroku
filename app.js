@@ -34,12 +34,12 @@ app.get('/',async (req,res)=>{
               console.log(error)
     }
 })
-
+//process.env.port
 //post method
 app.post('/post-product',async (req,res)=>{
           try{
-                  const item = await mongoClient.connect(link)
-                  const db =await item.db('product')
+                  let item = await mongoClient.connect(link)
+                  let db =await item.db('product')
 
                   //always add req to body 
                   await db.collection('product').insertOne(req.body)
@@ -52,8 +52,38 @@ app.post('/post-product',async (req,res)=>{
           }
 })
 
+/*
+// update method - put 
+app.put('update-product/:id',async(req,res)=>{
+    try{
+     const item = await mongoClient.connect(link)
+     const db =  await item.db('product')
+     await db.collection('product').findOneAndUpdate({_id:objectId(req.body)},{$set:req.body})
+     res.status(200).json({message:'product has been updated successfully'})
+     item.close()
+    }
+    catch(error){
+              console.log(error)
+    }
+})
+
+//delete method
+app.delete('delete-product/:id',async(req,res)=>{
+     try{
+     const item = mongoClient.connect(link)
+     const db = item.db('product')
+     await db.collection('product').deleteOne({_id:objectId(req.params.id)},{$set:req.body})
+     res.status(200).json({message:'product deleted from db'})
+     item.close()
+     }
+     catch(error)
+     {
+               console.log(error)
+     }
+})
 
 
+*/
 
 
 
